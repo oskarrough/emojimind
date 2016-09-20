@@ -1,0 +1,70 @@
+html {
+  background-color: hsl(208, 100%, 97%);
+}
+
+body {
+  margin: 0;
+}
+
+#emojimind {
+	max-width: 36rem;
+	padding: 1rem;
+	font-size: 15px;
+	line-height: 1.3;
+}
+
+#emojimind header {
+  max-width: 90%;
+  margin-bottom: 2rem;
+}
+
+.Row {
+	display: flex;
+	align-items: center;
+}
+
+.Row > * {
+	margin-right: 1rem;
+}
+
+.SelectGuess {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+input[type="number"] {
+  width: 2.5em;
+  text-align: center;
+}
+
+select,
+button {
+  padding: 0.3em 0.5em 0.4em;
+  border: 2px solid #000;
+  border-width: 1px 2px 2px 1px;
+  border-radius: 2px;
+  background-color: #eee;
+}
+
+button:focus,
+select:focus {
+  border-color: orange;
+}
+
+select {
+  margin-right: 2px;
+  min-width: 4em;
+}
+
+code {
+  /* make it the same width as .SelectGuess */
+  font-size: 1.5em;
+  letter-spacing: 1.47em;
+  margin-left: 0.6em;
+}
+
+/* Vue.js specific to avoid flash of content when using conditional templating */
+[v-cloak] {
+  display: none;
+}
