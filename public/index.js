@@ -5,7 +5,6 @@ Vue.filter('isEmptyObject', value => em.isEmptyObject(value))
 
 // Because our 'guess' array contains null values we need to filter them out before we can check the length.
 Vue.filter('invalidGuess', (array, max) => {
-	console.log(array, max)
 	return array.filter(v => v).length !== max
 })
 
@@ -64,15 +63,16 @@ const vm = new Vue({
 			if (!hasTheRightLength) {
 				throw new Error(`Your guess isn't complete. Does it have ${this.codeLength} symbols?`)
 			}
-			const isLastGuess = index === this.guesses.length - 1
 			const pins = em.getHints(this.code, guess)
 			Vue.set(this.guesses[index], 'pins', pins)
-			this.checkIfWeWon(pins.blacks === this.codeLength)
+			const isLastGuess = index === this.guesses.length - 1
+			this.checkIfWeWon(pins.blacks === this.codeLength, isLastGuess)
 		},
-		checkIfWeWon(winCondition) {
+		checkIfWeWon(winCondition, isLastGuess) {
 			if (winCondition) {
 				console.log('Correct.')
-				return window.alert('Correct.')
+				window.alert('Correct.')
+				return 
 			}
 			console.log('Wrong.')
 			if (isLastGuess) {
