@@ -1,4 +1,7 @@
-/* global window, em, Vue */
+/* global window, Vue */
+/* eslint no-alert:0 */
+
+import em from './emojimind'
 
 // Returns a boolean if the object is emtpy
 Vue.filter('isEmptyObject', value => em.isEmptyObject(value))
@@ -8,7 +11,7 @@ Vue.filter('invalidGuess', (array, max) => {
 	return array.filter(v => v).length !== max
 })
 
-const SelectGuess = Vue.component('select-guess', {
+Vue.component('select-guess', {
 	props: ['guess', 'symbols', 'disabled'],
 	template: `<ul class="SelectGuess">
 		<li v-for="char in guess" track-by="$index">
@@ -21,7 +24,7 @@ const SelectGuess = Vue.component('select-guess', {
 	</ul>`
 })
 
-const vm = new Vue({
+export default new Vue({
 	el: '#emojimind',
 	data: {
 		symbols: ['1', '2', '3', '4', '5', '6'],
@@ -72,7 +75,7 @@ const vm = new Vue({
 			if (winCondition) {
 				console.log('Correct.')
 				window.alert('Correct.')
-				return 
+				return
 			}
 			console.log('Wrong.')
 			if (isLastGuess) {

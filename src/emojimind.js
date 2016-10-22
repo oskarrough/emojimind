@@ -1,3 +1,5 @@
+import debug from './debug'
+
 const em = {}
 
 em.createCode = (symbols, length) => {
@@ -23,7 +25,7 @@ em.isEmptyObject = obj => Object.keys(obj).length === 0 && obj.constructor === O
 // A black is given for each symbol matching both symbol and position in the code.
 // A white is given if it is the right symbol but in wrong position.
 
-em.getHints = (answer, guess, debug) => {
+em.getHints = (answer, guess) => {
 	var hints = {blacks: 0, whites: 0}
 	var skiplist = []
 	var skiplist2 = []
@@ -35,29 +37,34 @@ em.getHints = (answer, guess, debug) => {
 		}
 	}
 
-	if (debug) console.log(`skipping slots: [${skiplist}]`)
+	debug(`skipping slots: [${skiplist}]`)
 
 	for (let g in guess) {
-		if (debug) console.log(`is ${guess[g]} from ${guess} a white in ${answer}?`)
+		// eslint guard for-in rule
+		if ({}.hasOwnProperty.call(guess, g)) {
+			continue
+		}
+		debug(`is ${guess[g]} from ${guess} a white in ${answer}?`)
 		if (skiplist.includes(g)) {
-			if (debug) console.log(`skiplist ${guess[g]} ${answer[g]}`)
+			debug(`skiplist ${guess[g]} ${answer[g]}`)
 			continue
 		}
 		for (let a in answer) {
 			if (skiplist.includes(a) || skiplist2.includes(a)) {
-				if (debug) console.log('- skiplist')
+				debug('- skiplist')
 				continue
 			}
 			if (guess[g] === answer[a]) {
-				if (debug) console.log(`- found a white`)
+				debug(`- found a white`)
 				skiplist2.push(a)
 				hints.whites++
 				break
 			}
-			if (debug) console.log(`- skip: no match`)
+			debug(`- skip: no match`)
 		}
 	}
 	return hints
 }
 
-module.exports = em
+export default em
+
