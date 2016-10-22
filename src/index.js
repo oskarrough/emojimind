@@ -34,6 +34,10 @@ export default new Vue({
 		code: [],
 		guesses: []
 	},
+	init() {
+		this.code = [6, 3, 2, 2]
+	// let hints = emojimind.getHints([6,3,2,2],[6,2,3,2])
+	},
 	computed: {
 		buttonLabel() {
 			return this.code.length ? 'Give me a new code' : 'Start a new game'

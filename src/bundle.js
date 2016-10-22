@@ -3,9 +3,12 @@ var emojimind = (function () {
 
 /* global window */
 
-// var window = window || {}
-var isDebug = true;
 var method = void 0;
+var isDebug = true;
+
+if (typeof window == 'undefined') {
+	isDebug = false;
+}
 
 // Allow us to toggle debug statements
 if (isDebug) {
@@ -90,7 +93,7 @@ em.getHints = function (answer, guess) {
 	return hints;
 };
 
-/* global window, em, Vue */
+/* global window, Vue */
 /* eslint no-alert:0 */
 
 // Returns a boolean if the object is emtpy
@@ -120,6 +123,11 @@ var index = new Vue({
 		code: [],
 		guesses: []
 	},
+	init: function init() {
+		console.log('hey');
+		// let hints = emojimind.getHints([6,3,2,2],[6,2,3,2])
+	},
+
 	computed: {
 		buttonLabel: function buttonLabel() {
 			return this.code.length ? 'Give me a new code' : 'Start a new game';

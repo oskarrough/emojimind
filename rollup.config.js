@@ -4,7 +4,10 @@ export default {
 	entry: 'src/index.js',
 	format: 'iife',
 	moduleName: 'emojimind',
-	plugins: [babel()],
+	plugins: [babel({
+		babelrc: false,
+		presets: ['es2015-rollup']
+	})],
 	dest: 'src/bundle.js'
 }
 

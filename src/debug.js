@@ -1,8 +1,11 @@
 /* global window */
 
-// var window = window || {}
-let isDebug = true
 let method
+let isDebug = true
+
+if (typeof window == 'undefined') {
+	isDebug = false
+}
 
 // Allow us to toggle debug statements
 if (isDebug) {
@@ -12,5 +15,6 @@ if (isDebug) {
 }
 
 const debug = method
+
 export default debug
 
