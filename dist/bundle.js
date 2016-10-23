@@ -1,12 +1,15 @@
-var emojimind = (function () {
-'use strict';
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.emojimind = factory());
+}(this, (function () { 'use strict';
 
 /* global window */
 
 var method = void 0;
 var isDebug = true;
 
-if (typeof window == 'undefined') {
+if (typeof window === 'undefined') {
 	isDebug = false;
 }
 
@@ -21,9 +24,15 @@ var debug = method;
 
 var em = {};
 
-em.createCode = function (symbols, length) {
+/**
+ Creates a random code
+ @param {String/Array} symbols - The symbols used to create the code
+ @param {Integer} maxLength - The length of the code
+ @return {Array} representing the code
+ */
+em.createCode = function (symbols, maxLength) {
 	var newCode = [];
-	for (var i = 0; i < length; i++) {
+	for (var i = 0; i < maxLength; i++) {
 		var random = em.numberBetween(0, symbols.length);
 		newCode.push(symbols[random]);
 	}
@@ -47,41 +56,56 @@ em.isEmptyObject = function (obj) {
 	return Object.keys(obj).length === 0 && obj.constructor === Object;
 };
 
-// Takes two arrays and returns an object with counts of black and white pins.
-// Example: getHints(['1', '2', '3', '4'], ['2', '1', '1', '4']) => {blacks: 1, whites: 1}
-// A black is given for each symbol matching both symbol and position in the code.
-// A white is given if it is the right symbol but in wrong position.
+/*
+	A black is given for each symbol matching both symbol and position in the code.
+	A white is given if it is the right symbol but in wrong position.
 
-em.getHints = function (answer, guess) {
+	Example:
+
+	getHints(['1', '2', '3', '4'], ['2', '1', '1', '4'])
+		=> {blacks: 1, whites: 1}
+
+	@param {Array} code
+	@param {Array} guess
+	@return {Object} with the amount of black and white hints
+*/
+em.getHints = function (code, guess) {
 	var hints = { blacks: 0, whites: 0 };
 	var skiplist = [];
 	var skiplist2 = [];
 
-	for (var slot in answer) {
-		if (answer[slot] === guess[slot]) {
+	// Check for black hints
+	for (var codeIndex in code) {
+		// eslint guard for-in rule
+		if (!{}.hasOwnProperty.call(guess, codeIndex)) {
+			continue;
+		}
+		if (code[codeIndex] === guess[codeIndex]) {
+			debug('found black at ' + codeIndex);
 			hints.blacks++;
-			skiplist.push(slot);
+			skiplist.push(codeIndex);
 		}
 	}
 
 	debug('skipping slots: [' + skiplist + ']');
 
+	// Check for white hints
 	for (var g in guess) {
 		// eslint guard for-in rule
-		if ({}.hasOwnProperty.call(guess, g)) {
+		if (!{}.hasOwnProperty.call(guess, g)) {
 			continue;
 		}
-		debug('is ' + guess[g] + ' from ' + guess + ' a white in ' + answer + '?');
+		debug('is ' + guess[g] + ' from ' + guess + ' a white in ' + code + '?');
 		if (skiplist.includes(g)) {
-			debug('skiplist ' + guess[g] + ' ' + answer[g]);
+			debug('skiplist ' + guess[g] + ' ' + code[g]);
 			continue;
 		}
-		for (var a in answer) {
+		for (var a in code) {
 			if (skiplist.includes(a) || skiplist2.includes(a)) {
 				debug('- skiplist');
 				continue;
 			}
-			if (guess[g] === answer[a]) {
+			if (guess[g] === code[a]) {
 				debug('- found a white');
 				skiplist2.push(a);
 				hints.whites++;
@@ -124,7 +148,7 @@ var index = new Vue({
 		guesses: []
 	},
 	init: function init() {
-		console.log('hey');
+		this.code = [6, 3, 2, 2];
 		// let hints = emojimind.getHints([6,3,2,2],[6,2,3,2])
 	},
 
@@ -183,4 +207,5 @@ var index = new Vue({
 
 return index;
 
-}());
+})));
+//# sourceMappingURL=bundle.js.map

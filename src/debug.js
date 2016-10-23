@@ -3,7 +3,7 @@
 let method
 let isDebug = true
 
-if (typeof window == 'undefined') {
+if (typeof window === 'undefined') {
 	isDebug = false
 }
 
@@ -17,4 +17,3 @@ if (isDebug) {
 const debug = method
 
 export default debug
-

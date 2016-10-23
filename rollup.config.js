@@ -1,13 +1,13 @@
 import babel from 'rollup-plugin-babel'
 
 export default {
-	entry: 'src/index.js',
-	format: 'iife',
 	moduleName: 'emojimind',
+	entry: 'src/index.js',
+	format: 'umd',
 	plugins: [babel({
 		babelrc: false,
 		presets: ['es2015-rollup']
 	})],
-	dest: 'src/bundle.js'
+	sourceMap: true,
+	dest: 'dist/bundle.js'
 }
-

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A small mastermind variant",
   "scripts": {
-    "start": "browser-sync start --server 'src' --files 'src'",
+    "start": "browser-sync start --serveStatic src dist --files src dist --no-notify",
     "build": "rollup -c",
     "test": "xo && ava"
   },
