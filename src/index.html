@@ -11,7 +11,7 @@
 			<p>Welcome to Emojimind. Let us attempt to break a secret code of <input type="number" v-model="codeLength" number> symbols. Duplicate symbols are allowed. If you can solve it in maximum <input type="number" v-model="maxGuesses" number> tries, you win.</p>
 			<p>After each guess you'll receive from zero to four hints. Hints do not indicate exactly which symbol they represent.</p>
 			<p>(X) = correct symbol and position<br>( ) = correct symbol but wrong position</p>
-			<!-- <p>These are our symbols. Go ahead, you can change them 🆒</p>  
+			<!-- <p>These are our symbols. Go ahead, you can change them 🆒</p>
 		 <ul>
 		 <li v-for="symbol in symbols">
 		 <input v-model="symbol">
@@ -53,3 +53,7 @@
 	<!-- <script src="https://npmcdn.com/vue/dist/vue.js"></script> -->
 	<script src="https://unpkg.com/vue@1.0.28/dist/vue.min.js"></script>
 	<script src="bundle.js"></script>
+
+	<script id="__bs_script__">//<![CDATA[
+		document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.17.5'><\/script>".replace("HOST", location.hostname));
+	//]]></script>
