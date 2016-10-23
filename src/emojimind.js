@@ -30,10 +30,16 @@ em.getHints = (answer, guess) => {
 	var skiplist = []
 	var skiplist2 = []
 
-	for (let slot in answer) {
-		if (answer[slot] === guess[slot]) {
+	// Check for black hints
+	for (let codeIndex in code) {
+		// eslint guard for-in rule
+		if (!{}.hasOwnProperty.call(guess, codeIndex)) {
+			continue
+		}
+		if (code[codeIndex] === guess[codeIndex]) {
+			debug(`found black at ${codeIndex}`)
 			hints.blacks++
-			skiplist.push(slot)
+			skiplist.push(codeIndex)
 		}
 	}
 
@@ -41,7 +47,7 @@ em.getHints = (answer, guess) => {
 
 	for (let g in guess) {
 		// eslint guard for-in rule
-		if ({}.hasOwnProperty.call(guess, g)) {
+		if (!{}.hasOwnProperty.call(guess, g)) {
 			continue
 		}
 		debug(`is ${guess[g]} from ${guess} a white in ${answer}?`)
