@@ -4,29 +4,30 @@
   "description": "A small mastermind variant",
   "scripts": {
     "server": "browser-sync start --serveStatic src dist --files src dist --no-notify",
-		"start": "npm run server",
+    "start": "npm run server",
     "build": "rollup -c",
     "test": "xo && ava"
   },
-	"engines": {
-		"node": ">= 6.0.0"
-	},
+  "engines": {
+    "node": ">= 6.0.0"
+  },
   "dependencies": {
     "debug": "^2.2.0"
   },
   "devDependencies": {
     "ava": "^0.16.0",
     "babel-preset-es2015-rollup": "^1.2.0",
+    "babel-register": "^6.16.3",
     "browser-sync": "^2.17.5",
     "rollup": "^0.36.3",
     "rollup-plugin-babel": "^2.6.1",
     "xo": "^0.16.0"
   },
   "ava": {
-		"babel": "inherit",
+    "babel": "inherit",
     "require": [
-			"babel-register"
-		]
+      "babel-register"
+    ]
   },
   "babel": {
     "presets": [
