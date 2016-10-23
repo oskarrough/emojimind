@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "A small mastermind variant",
   "scripts": {
-    "start": "browser-sync start --serveStatic src dist --files src dist --no-notify",
+    "server": "browser-sync start --serveStatic src dist --files src dist --no-notify",
+		"start": "npm run server",
     "build": "rollup -c",
     "test": "xo && ava"
   },
@@ -12,7 +13,6 @@
   },
   "devDependencies": {
     "ava": "^0.16.0",
-    "babel-preset-es2015": "^6.16.0",
     "babel-preset-es2015-rollup": "^1.2.0",
     "browser-sync": "^2.17.5",
     "rollup": "^0.36.3",
@@ -20,9 +20,10 @@
     "xo": "^0.16.0"
   },
   "ava": {
+		"babel": "inherit",
     "require": [
-      "babel-register"
-    ]
+			"babel-register"
+		]
   },
   "babel": {
     "presets": [
