@@ -2,6 +2,15 @@ import debug from './debug'
 
 const em = {}
 
+// Returns a random integer between min (included) and max (excluded)
+em.numberBetween = (min, max) => Math.floor(Math.random() * (max - min)) + min
+
+// Copies an array
+em.copyArray = array => array.map(arr => arr.slice())
+
+// Checks whether an object is empty or not
+em.isEmptyObject = obj => Object.keys(obj).length === 0 && obj.constructor === Object
+
 /**
  Creates a random code
  @param {String/Array} symbols - The symbols used to create the code
@@ -17,15 +26,6 @@ em.createCode = (symbols, maxLength) => {
 	return newCode
 }
 
-// Returns a random integer between min (included) and max (excluded)
-em.numberBetween = (min, max) => Math.floor(Math.random() * (max - min)) + min
-
-// Copies an array
-em.copyArray = array => array.map(arr => arr.slice())
-
-// Checks whether an object is empty or not
-em.isEmptyObject = obj => Object.keys(obj).length === 0 && obj.constructor === Object
-
 /*
 	A black is given for each symbol matching both symbol and position in the code.
 	A white is given if it is the right symbol but in wrong position.
@@ -38,7 +38,7 @@ em.isEmptyObject = obj => Object.keys(obj).length === 0 && obj.constructor === O
 	@param {Array} code
 	@param {Array} guess
 	@return {Object} with the amount of black and white hints
-*/
+	*/
 em.getHints = (code, guess) => {
 	var hints = {blacks: 0, whites: 0}
 	var skiplist = []
