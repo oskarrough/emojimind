@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "description": "A small mastermind variant",
   "scripts": {
-    "server": "browser-sync start --serveStatic src dist --files src dist --no-notify",
-    "start": "npm run server",
+    "start": "node browser-sync.js",
     "build": "rollup -c",
     "test": "xo && ava"
   },
