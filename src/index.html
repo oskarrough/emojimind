@@ -11,18 +11,16 @@
 			<p>Welcome to Emojimind. Let us attempt to break a secret code of <input type="number" v-model="codeLength" number> symbols. Duplicate symbols are allowed. If you can solve it in maximum <input type="number" v-model="maxGuesses" number> tries, you win.</p>
 			<p>After each guess you'll receive from zero to four hints. Hints do not indicate exactly which symbol they represent.</p>
 			<p>(X) = correct symbol and position<br>( ) = correct symbol but wrong position</p>
-			<!-- <p>These are our symbols. Go ahead, you can change them 🆒</p>
-		 <ul>
-		 <li v-for="symbol in symbols">
-		 <input v-model="symbol">
-		 </li>
-		 </ul> -->
 		</header>
 
 		<p><button @click="newGame" v-cloak>{{buttonLabel}}</button></p>
 
 		<template v-if="code.length">
-			<p v-show="!showCode" style="min-height: 1.1875em"><code>xxxx</code></p>
+			<p v-show="!showCode" style="min-height: 1.1875em">
+				<code>
+				<div><span v-for="n in code" transition="stagger" stagger="100">X</span></div>
+				</code>
+			</p>
 			<select-guess v-show="showCode" :guess="code" :symbols="symbols"></select-guess>
 		</template>
 
