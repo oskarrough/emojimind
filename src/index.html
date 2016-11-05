@@ -10,7 +10,9 @@
 		<header>
 			<p>Welcome to Emojimind. Let us attempt to break a secret code of <input type="number" v-model="codeLength" number> symbols. Duplicate symbols are allowed. If you can solve it in maximum <input type="number" v-model="maxGuesses" number> tries, you win.</p>
 			<p>After each guess you'll receive from zero to four hints. Hints do not indicate exactly which symbol they represent.</p>
-			<p>(X) = correct symbol and position<br>( ) = correct symbol but wrong position</p>
+			<p>
+				(X) = correct symbol and position<br>
+				(O) = correct symbol but wrong position</p>
 		</header>
 
 		<p><button @click="newGame" v-cloak>{{buttonLabel}}</button></p>
@@ -18,7 +20,7 @@
 		<template v-if="code.length">
 			<p v-show="!showCode" style="min-height: 1.1875em">
 				<code>
-				<div><span v-for="n in code" transition="stagger" stagger="100">X</span></div>
+					<b v-for="n in code">X</b>
 				</code>
 			</p>
 			<select-guess v-show="showCode" :guess="code" :symbols="symbols"></select-guess>
@@ -31,19 +33,19 @@
 			</p>
 			<div v-cloak class="Row-pins">
 				<div><span v-for="n in row.pins.blacks" transition="stagger" stagger="100">(X)</span></div>
-				<div><span v-for="n in row.pins.whites" transition="stagger" stagger="100">( )</span></div>
+				<div><span v-for="n in row.pins.whites" transition="stagger" stagger="100">(O)</span></div>
 			</div>
 		</form>
 
 		<template v-if="code.length">
 			<p>
-			<small>
-				<input type="checkbox" id="checkbox" v-model="showCode">
-				<label for="checkbox">
-					<span v-if="showCode">OK, hide it again</span>
-					<span v-else title="Show the code to me">I give up</span>
-				</label>
-			</small>
+				<small>
+					<input type="checkbox" id="checkbox" v-model="showCode">
+					<label for="checkbox">
+						<span v-if="showCode">OK, hide it again</span>
+						<span v-else title="Show the code to me">I give up</span>
+					</label>
+				</small>
 			</p>
 		</template>
 	</div>
