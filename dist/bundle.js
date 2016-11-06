@@ -24,21 +24,6 @@ var debug = method;
 
 var em = {};
 
-/**
- Creates a random code
- @param {String/Array} symbols - The symbols used to create the code
- @param {Integer} maxLength - The length of the code
- @return {Array} representing the code
- */
-em.createCode = function (symbols, maxLength) {
-	var newCode = [];
-	for (var i = 0; i < maxLength; i++) {
-		var random = em.numberBetween(0, symbols.length);
-		newCode.push(symbols[random]);
-	}
-	return newCode;
-};
-
 // Returns a random integer between min (included) and max (excluded)
 em.numberBetween = function (min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
@@ -56,6 +41,21 @@ em.isEmptyObject = function (obj) {
 	return Object.keys(obj).length === 0 && obj.constructor === Object;
 };
 
+/**
+ Creates a random code
+ @param {String/Array} symbols - The symbols used to create the code
+ @param {Integer} maxLength - The length of the code
+ @return {Array} representing the code
+ */
+em.createCode = function (symbols, maxLength) {
+	var newCode = [];
+	for (var i = 0; i < maxLength; i++) {
+		var random = em.numberBetween(0, symbols.length);
+		newCode.push(symbols[random]);
+	}
+	return newCode;
+};
+
 /*
 	A black is given for each symbol matching both symbol and position in the code.
 	A white is given if it is the right symbol but in wrong position.
@@ -68,7 +68,7 @@ em.isEmptyObject = function (obj) {
 	@param {Array} code
 	@param {Array} guess
 	@return {Object} with the amount of black and white hints
-*/
+	*/
 em.getHints = function (code, guess) {
 	var hints = { blacks: 0, whites: 0 };
 	var skiplist = [];
