@@ -40,12 +40,16 @@ export default new Vue({
 	},
 	computed: {
 		buttonLabel() {
-			return this.code.length ? 'Give me a new code' : 'Start a new game'
+			return this.code.length ? 'Give me a new code' : 'I am ready. Let me try'
 		}
 	},
 	methods: {
 		newGame() {
-			this.code = em.createCode(this.symbols, this.codeLength)
+			console.log('new game')
+			const code = em.createCode(this.symbols, this.codeLength)
+			// console.log(code)
+			// this.code = code
+			Vue.set(this, 'code', code)
 			this.guesses = this.createGuesses()
 		},
 		createGuesses() {

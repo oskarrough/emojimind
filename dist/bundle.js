@@ -154,12 +154,16 @@ var index = new Vue({
 
 	computed: {
 		buttonLabel: function buttonLabel() {
-			return this.code.length ? 'Give me a new code' : 'Start a new game';
+			return this.code.length ? 'Give me a new code' : 'I am ready. Let me try';
 		}
 	},
 	methods: {
 		newGame: function newGame() {
-			this.code = em.createCode(this.symbols, this.codeLength);
+			console.log('new game');
+			var code = em.createCode(this.symbols, this.codeLength);
+			// console.log(code)
+			// this.code = code
+			Vue.set(this, 'code', code);
 			this.guesses = this.createGuesses();
 		},
 		createGuesses: function createGuesses() {
