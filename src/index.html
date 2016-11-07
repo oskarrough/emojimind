@@ -8,8 +8,8 @@
 
 	<div id="emojimind">
 		<header>
-			<p>Welcome to Emojimind. Let us attempt to break a secret code of <input type="number" v-model="codeLength" number> symbols. Duplicate symbols are allowed. If you can solve it in maximum <input type="number" v-model="maxGuesses" number> tries, you win.</p>
-			<p>After each guess you'll receive from zero to four hints. Hints do not indicate exactly which symbol they represent.</p>
+			<p>Welcome to Emojimind. Can you break the secret code? You'll have ten tries.</p>
+			<p>After each try you'll receive up up to four hints.</p>
 			<p>
 				(X) = correct symbol and position<br>
 				(O) = correct symbol but wrong position</p>
@@ -20,7 +20,9 @@
 		<template v-if="code.length">
 			<p v-show="!showCode" style="min-height: 1.1875em">
 				<code>
-					<b v-for="n in code">X</b>
+					<b v-for="n in code">
+						<span>X</span>
+					</b>
 				</code>
 			</p>
 			<select-guess v-show="showCode" :guess="code" :symbols="symbols"></select-guess>

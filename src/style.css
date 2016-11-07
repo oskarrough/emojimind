@@ -6,16 +6,12 @@
 }
 
 html {
-	/* background-color: hsl(208, 100%, 97%); */
-	/* background-image: url(http://lpc.opengameart.org/sites/all/themes/lpc/media/sharm_bg.png); */
-	/* background-image: url(https://res.cloudinary.com/radio4000/image/upload/c_scale,w_1440/v1478391775/back_2_j3ri1w.webp); */
-	background-size: 400px;
-	background-repeat: no-repeat;
 	font-size: 16px;
 	line-height: 1.4;
 	line-height: calc(24/16); 
+
 	background-color: hsl(125, 47%, 35%);
-	/* border-color: hsl(210, 33%, 9%); */
+	background-image: linear-gradient(to bottom, hsl(125, 47%, 40%), hsl(125, 47%, 35%));
 	box-shadow:
 		inset hsl(262, 100%, 55%) 0 0 0 5px,
 		inset hsl(262, 93%, 53%) 0 0 0 1px,
@@ -25,6 +21,7 @@ html {
 		inset hsl(262, 87%, 75%) 0 0 0 17px,
 		inset hsl(262, 100%, 89%) 0 0 0 22px;
 	color: hsl(34, 78%, 96%);
+	min-height: 100vh;
 }
 
 html,
@@ -46,7 +43,7 @@ body {
 }
 
 #emojimind header {
-	/* max-width: 90%; */
+	max-width: 90%;
 }
 
 .Row {
