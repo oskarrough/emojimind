@@ -20,7 +20,7 @@
 		<template v-if="code.length">
 			<p v-show="!showCode" style="min-height: 1.1875em">
 				<code>
-					<b v-for="n in code">
+					<b v-for="(n, index) in code" track-by="$index">
 						<span>X</span>
 					</b>
 				</code>

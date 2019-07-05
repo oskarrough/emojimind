@@ -36,7 +36,7 @@ export default new Vue({
 	},
 	init() {
 		this.code = [6, 3, 2, 2]
-	// let hints = emojimind.getHints([6,3,2,2],[6,2,3,2])
+		// let hints = emojimind.getHints([6,3,2,2],[6,2,3,2])
 	},
 	computed: {
 		buttonLabel() {
@@ -47,10 +47,9 @@ export default new Vue({
 		newGame() {
 			console.log('new game')
 			const code = em.createCode(this.symbols, this.codeLength)
-			// console.log(code)
-			// this.code = code
 			Vue.set(this, 'code', code)
-			this.guesses = this.createGuesses()
+			const guesses = this.createGuesses()
+			Vue.set(this, 'guesses', guesses)
 		},
 		createGuesses() {
 			let guesses = []

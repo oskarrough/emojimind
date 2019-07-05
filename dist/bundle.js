@@ -161,10 +161,9 @@ var index = new Vue({
 		newGame: function newGame() {
 			console.log('new game');
 			var code = em.createCode(this.symbols, this.codeLength);
-			// console.log(code)
-			// this.code = code
 			Vue.set(this, 'code', code);
-			this.guesses = this.createGuesses();
+			var guesses = this.createGuesses();
+			Vue.set(this, 'guesses', guesses);
 		},
 		createGuesses: function createGuesses() {
 			var guesses = [];
