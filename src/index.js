@@ -15,7 +15,7 @@ Vue.component('select-guess', {
 	props: ['guess', 'symbols', 'disabled'],
 	template: `<ul class="SelectGuess">
 		<li v-for="char in guess" track-by="$index">
-			<select v-model="char" :disabled="disabled">
+			<select required v-model="char" :disabled="disabled">
 				<option v-for="sym in symbols" track-by="$index" :value="sym">
 					{{sym}}
 				</option>
@@ -40,7 +40,7 @@ export default new Vue({
 	},
 	computed: {
 		buttonLabel() {
-			return this.code.length ? 'Give me a new code' : 'I am ready. Let me try'
+			return this.code.length ? 'Start over with a new code' : 'I am ready. Let me try'
 		},
 		totalPossibilities() {
 			return this.symbols.length * 1 * 2 * 3 * 4 * 5 * 6

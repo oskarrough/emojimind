@@ -134,7 +134,7 @@ Vue.filter('invalidGuess', function (array, max) {
 
 Vue.component('select-guess', {
 	props: ['guess', 'symbols', 'disabled'],
-	template: '<ul class="SelectGuess">\n\t\t<li v-for="char in guess" track-by="$index">\n\t\t\t<select v-model="char" :disabled="disabled">\n\t\t\t\t<option v-for="sym in symbols" track-by="$index" :value="sym">\n\t\t\t\t\t{{sym}}\n\t\t\t\t</option>\n\t\t\t</select>\n\t\t</li>\n\t</ul>'
+	template: '<ul class="SelectGuess">\n\t\t<li v-for="char in guess" track-by="$index">\n\t\t\t<select required v-model="char" :disabled="disabled">\n\t\t\t\t<option v-for="sym in symbols" track-by="$index" :value="sym">\n\t\t\t\t\t{{sym}}\n\t\t\t\t</option>\n\t\t\t</select>\n\t\t</li>\n\t</ul>'
 });
 
 var index = new Vue({
@@ -154,7 +154,7 @@ var index = new Vue({
 
 	computed: {
 		buttonLabel: function buttonLabel() {
-			return this.code.length ? 'Give me a new code' : 'I am ready. Let me try';
+			return this.code.length ? 'Start over with a new code' : 'I am ready. Let me try';
 		},
 		totalPossibilities: function totalPossibilities() {
 			return this.symbols.length * 1 * 2 * 3 * 4 * 5 * 6;

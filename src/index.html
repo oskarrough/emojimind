@@ -9,8 +9,14 @@
 	<div id="emojimind">
 		<header>
 			<template v-if="!code.length">
-				<h1>Welcome to Emojimind.<br>Can you break the secret code?</h1>
-				<p>{{symbols.length}} symbols. {{codeLength}} characters. {{maxGuesses}} guesses. {{totalPossibilities}} posibilities.</p>
+				<h1>Welcome to Emojimind</h1>
+				<p>Can you break the secret code?</p>
+				<p>
+					{{symbols.length}} symbols. 
+					{{codeLength}} characters. 
+					{{totalPossibilities}} posibilities.
+					Only {{maxGuesses}} guesses. 
+				</p>
 			</template>
 			<template v-else>
 				<h1>Emojimind</h1>
@@ -28,7 +34,7 @@
 			<p v-show="!showCode" class="CodeDisplay">
 				<code>
 					<b v-for="(n, index) in code" track-by="$index">
-						<span>X</span>
+						<span>?</span>
 					</b>
 				</code>
 			</p>
@@ -38,7 +44,7 @@
 		<form v-for="row in guesses" class="Row" @submit="tryGuess($index, $event)">
 			<select-guess :guess="row.guess" :symbols="symbols" :disabled="row.pins.blacks || row.pins.whites"></select-guess>
 			<p v-show="row.pins | isEmptyObject" v-cloak class="Row-action">
-			<button type="submit" >Guess</button>
+			<button type="submit">Guess</button>
 			</p>
 			<div v-cloak class="Row-pins">
 				<div><span v-for="n in row.pins.blacks" transition="stagger" stagger="100">(X)</span></div>
@@ -59,7 +65,6 @@
 		</template>
 	</div>
 
-	<!-- <script src="https://npmcdn.com/vue/dist/vue.js"></script> -->
 	<script src="https://unpkg.com/vue@1.0.28/dist/vue.min.js"></script>
 	<script src="bundle.js"></script>
 
