@@ -8,4 +8,3 @@ bs.init({
 })
 
 bs.watch(['src/*.html', 'dist/*.js', 'src/*.css']).on('change', bs.reload)
-

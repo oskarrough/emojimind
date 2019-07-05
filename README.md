@@ -11,3 +11,7 @@ The idea is to have an interface to implement Mastermind in any form. In this re
 - [ ] Customizable emojis
 - [ ] Use something like pouchdb to save progress
 
+## Development
+
+- `yarn dev` starts a local server and recompiles the app as you work
+- `yarn build` builds `src/index.js` to `dist/bundle.js` - also see rollup.config.js
