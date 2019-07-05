@@ -8,17 +8,24 @@
 
 	<div id="emojimind">
 		<header>
-			<p>Welcome to Emojimind. Can you break the secret code? You'll have ten tries.</p>
-			<p>After each try you'll receive up up to four hints.</p>
-			<p>
-				(X) = correct symbol and position<br>
-				(O) = correct symbol but wrong position</p>
+			<template v-if="!code.length">
+				<h1>Welcome to Emojimind.<br>Can you break the secret code?</h1>
+				<p>{{symbols.length}} symbols. {{codeLength}} characters. {{maxGuesses}} guesses. {{totalPossibilities}} posibilities.</p>
+			</template>
+			<template v-else>
+				<h1>Emojimind</h1>
+				<p>After each guess you'll receive up to four hints:</p>
+				<p style="margin-left: 1em">
+					(X) = correct symbol and position<br>
+					(O) = correct symbol but wrong position
+				</p>
+			</template>
 		</header>
 
 		<p><button @click="newGame" v-cloak>{{buttonLabel}}</button></p>
 
 		<template v-if="code.length">
-			<p v-show="!showCode" style="min-height: 1.1875em">
+			<p v-show="!showCode" class="CodeDisplay">
 				<code>
 					<b v-for="(n, index) in code" track-by="$index">
 						<span>X</span>

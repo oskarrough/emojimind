@@ -5,10 +5,22 @@
 	font-style: normal;
 }
 
+body {
+	min-height: 100%;
+}
+
+html,
+input,
+button,
+select {
+	font-family: 'junction', sans-serif;
+	font-size: initial;
+}
+
 html {
-	font-size: 16px;
+	font-size: 20px;
 	line-height: 1.4;
-	line-height: calc(24/16); 
+	line-height: 1.5;
 
 	background-color: hsl(125, 47%, 35%);
 	background-image: linear-gradient(to bottom, hsl(125, 47%, 40%), hsl(125, 47%, 35%));
@@ -21,24 +33,24 @@ html {
 		inset hsl(262, 87%, 75%) 0 0 0 17px,
 		inset hsl(262, 100%, 89%) 0 0 0 22px;
 	color: hsl(34, 78%, 96%);
-	min-height: 100vh;
 }
 
 html,
-input,
-button,
-select {
-	font-family: 'junction', sans-serif;
+body {
+	min-height: 100vh;
 }
 
 body {
 	margin: 0;
+	display: flex;
 }
 
 #emojimind {
+	width: 100%;
 	max-width: 36rem;
 	margin-left: auto;
 	margin-right: auto;
+	margin: auto;
 	padding: 2rem 2.5rem;
 }
 
@@ -93,11 +105,13 @@ select {
 	appearance: none;
 }
 
-code {
+.CodeDisplay code {
 	/* make it the same width as .SelectGuess */
+	display: block;
 	font-size: 1.5em;
-	letter-spacing: 1.47em;
+	letter-spacing: 0.25em;
 	margin-left: 0.6em;
+	min-height: 48px;
 }
 
 /* Vue.js specific to avoid flash of content when using conditional templating */

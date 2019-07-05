@@ -155,6 +155,9 @@ var index = new Vue({
 	computed: {
 		buttonLabel: function buttonLabel() {
 			return this.code.length ? 'Give me a new code' : 'I am ready. Let me try';
+		},
+		totalPossibilities: function totalPossibilities() {
+			return this.symbols.length * 1 * 2 * 3 * 4 * 5 * 6;
 		}
 	},
 	methods: {
@@ -187,7 +190,8 @@ var index = new Vue({
 				return g;
 			}).length === this.codeLength;
 			if (!hasTheRightLength) {
-				throw new Error('Your guess isn\'t complete. Does it have ' + this.codeLength + ' symbols?');
+				alert('Your guess isn\'t complete. Does it have ' + this.codeLength + ' symbols?');
+				return;
 			}
 			var pins = em.getHints(this.code, guess);
 			Vue.set(this.guesses[index], 'pins', pins);

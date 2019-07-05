@@ -41,6 +41,9 @@ export default new Vue({
 	computed: {
 		buttonLabel() {
 			return this.code.length ? 'Give me a new code' : 'I am ready. Let me try'
+		},
+		totalPossibilities() {
+			return this.symbols.length * 1 * 2 * 3 * 4 * 5 * 6
 		}
 	},
 	methods: {
@@ -71,7 +74,8 @@ export default new Vue({
 			const guess = this.guesses[index].guess
 			const hasTheRightLength = guess.filter(g => g).length === this.codeLength
 			if (!hasTheRightLength) {
-				throw new Error(`Your guess isn't complete. Does it have ${this.codeLength} symbols?`)
+				alert(`Your guess isn't complete. Does it have ${this.codeLength} symbols?`)
+				return
 			}
 			const pins = em.getHints(this.code, guess)
 			Vue.set(this.guesses[index], 'pins', pins)
