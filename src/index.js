@@ -32,24 +32,28 @@ export default new Vue({
 		codeLength: 4,
 		maxGuesses: 10,
 		showCode: false,
-		code: [],
+		code: [1,1,1,1],
 		guesses: []
 	},
 	computed: {
 		buttonLabel() {
 			return this.code.length > 0
-				? 'Start over with a new code'
+				? 'Reset game'
 				: 'I am ready. Let me try'
 		},
 		totalPossibilities() {
 			return Number(this.symbols.length) * 1 * 2 * 3 * 4 * 5 * 6
 		}
 	},
+	created() {
+		this.newGame()
+	},
 	methods: {
 		newGame() {
 			console.log('new game')
 			this.code = em.createCode(this.symbols, this.codeLength)
 			this.guesses = this.createGuesses()
+			this.showCode = false // reset this option, in case
 		},
 		createGuesses() {
 			const guesses = []
@@ -80,9 +84,10 @@ export default new Vue({
 				)
 				return
 			}
-
+				console.log(this.guesses[index])
 			const pins = em.getHints(this.code, guess)
 			Vue.set(this.guesses[index], 'pins', pins)
+				console.log(this.guesses[index])
 			const isLastGuess = index === this.guesses.length - 1
 			this.checkIfWeWon(pins.blacks === this.codeLength, isLastGuess)
 		},
@@ -90,13 +95,17 @@ export default new Vue({
 			if (winCondition) {
 				console.log('Correct.')
 				window.alert('Correct.')
-				return
+				return true
 			}
 
 			console.log('Wrong.')
+			window.alert('Wrong.')
+
 			if (isLastGuess) {
 				window.alert('Mwa ha ha, you lose. I am the mastermind. Not you.')
 			}
+
+			return false
 		}
 	}
 })

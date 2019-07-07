@@ -1,6 +1,10 @@
+:root {
+	--inputSize: 3.5rem;
+}
+
 @font-face {
-	font-family: 'junction';
-	src: url('fonts/junction-webfont.woff') format('woff');
+	font-family: 'ocr-pbi';
+	src: url('fonts/ocr-pbi.ttf') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -9,30 +13,28 @@ body {
 	min-height: 100%;
 }
 
-html,
+html {
+	font-size: 18px;
+	font-family: 'ocr-pbi', segoe ui, system-ui, sans-serif;
+	line-height: 1.5;
+	background-color: hsl(125, 47%, 35%);
+	background-image: linear-gradient(
+		to bottom,
+		hsl(125, 47%, 40%),
+		hsl(125, 47%, 35%)
+	);
+	box-shadow: inset hsl(262, 100%, 55%) 0 0 0 5px,
+		inset hsl(262, 93%, 53%) 0 0 0 1px, inset hsl(262, 100%, 66%) 0 0 0 10px,
+		inset hsl(262, 91%, 64%) 0 0 0 11px, inset hsl(262, 100%, 77%) 0 0 0 16px,
+		inset hsl(262, 87%, 75%) 0 0 0 17px, inset hsl(262, 100%, 89%) 0 0 0 22px;
+	color: hsl(34, 78%, 96%);
+}
+
 input,
 button,
 select {
-	font-family: 'junction', sans-serif;
-	font-size: initial;
-}
-
-html {
-	font-size: 20px;
-	line-height: 1.4;
-	line-height: 1.5;
-
-	background-color: hsl(125, 47%, 35%);
-	background-image: linear-gradient(to bottom, hsl(125, 47%, 40%), hsl(125, 47%, 35%));
-	box-shadow:
-		inset hsl(262, 100%, 55%) 0 0 0 5px,
-		inset hsl(262, 93%, 53%) 0 0 0 1px,
-		inset hsl(262, 100%, 66%) 0 0 0 10px,
-		inset hsl(262, 91%, 64%) 0 0 0 11px,
-		inset hsl(262, 100%, 77%) 0 0 0 16px,
-		inset hsl(262, 87%, 75%) 0 0 0 17px,
-		inset hsl(262, 100%, 89%) 0 0 0 22px;
-	color: hsl(34, 78%, 96%);
+	font-family: inherit;
+	font-size: inherit;
 }
 
 html,
@@ -51,21 +53,51 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	margin: auto;
+	/* space for <html> border */
 	padding: 2rem 2.5rem;
 }
 
-#emojimind header {
-	max-width: 90%;
+select,
+button {
+	border: 2px solid hsl(125, 66%, 24%);
+	border-width: 1px 3px 3px 1px;
+	background: hsl(125, 51%, 32%);
+	color: white;
+	font-weight: bold;
+	letter-spacing: -0.05em;
+	text-transform: uppercase;
 }
 
-.Row {
-	display: flex;
-	align-items: center;
+button {
+	line-height: 1;
+	padding: 0.6em 0.6em 0.5em;
+	border-radius: 4px;
 }
 
-.Row > * {
-	margin-right: 1rem;
-	margin-bottom: 0;
+select {
+	width: var(--inputSize);
+	height: var(--inputSize);
+	border-radius: 50%;
+	padding: 0 0 0 1.2em;
+}
+
+select:hover,
+button:hover {
+	background: hsl(125, 51%, 44%);
+	border-color: hsl(262, 93%, 53%);
+}
+
+select:focus,
+button:focus {
+	background: hsl(125, 51%, 48%);
+}
+
+button.wrong {
+	background: red;
+}
+
+button.correct {
+	background: green;
 }
 
 .SelectGuess {
@@ -74,47 +106,32 @@ body {
 	padding: 0;
 }
 
-input[type="number"] {
-	background-color: transparent;
-	color: hsl(34, 78%, 96%);
-	width: 2.2em;
+.SelectGuess > * {
+	margin-right: 0.5em;
 }
 
-select,
-button {
-	line-height: 1;
-	padding: 0.6em 0.5em 0.5em;
-	border: 2px solid hsla(0, 0%, 0%, 0.8);
-	border-width: 1px 3px 3px 1px;
-	border-radius: 2px;
-	background-color: hsl(34, 75%, 94%);
+/* Mimic size of the SelectGuess */
+.CodeDisplay {
+	margin-top: 2rem;
+	display: flex;
+	height: var(--inputSize);
+	align-items: center;
 }
 
-select:focus,
-button:focus {
-	border-color: orange;
-	background-color: hsl(34, 75%, 98%);
-}
-
-select {
-	margin-right: 2px;
-	width: 3em;
-	height: 3em;
-	border-radius: 50%;
-	padding: 0 0 0 1.15em;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-}
-
-.CodeDisplay  {
-	position: relative;
-}
 .CodeDisplay > * {
-	display: inline-block;
-	min-width: 50px;
+	width: var(--inputSize);
 	text-align: center;
-	min-height: 48px;
+	margin-right: 0.5rem;
+}
+
+.Row {
+	display: flex;
+	align-items: center;
+}
+
+.Row > * {
+	margin-top: 0;
+	margin-right: 1rem;
 }
 
 /* Vue.js specific to avoid flash of content when using conditional templating */
