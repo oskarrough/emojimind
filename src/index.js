@@ -32,7 +32,7 @@ export default new Vue({
 		codeLength: 4,
 		maxGuesses: 10,
 		showCode: false,
-		code: [6, 3, 2, 2],
+		code: [],
 		guesses: []
 	},
 	computed: {
@@ -40,7 +40,7 @@ export default new Vue({
 			return this.code.length ? 'Start over with a new code' : 'I am ready. Let me try'
 		},
 		totalPossibilities() {
-			return this.symbols.length * 1 * 2 * 3 * 4 * 5 * 6
+			return Number(this.symbols.length) * 1 * 2 * 3 * 4 * 5 * 6
 		}
 	},
 	methods: {
@@ -69,7 +69,7 @@ export default new Vue({
 			const guess = this.guesses[index].guess
 			const hasTheRightLength = guess.filter(g => g).length === this.codeLength
 			if (!hasTheRightLength) {
-				alert(`Your guess isn't complete. Does it have ${this.codeLength} symbols?`)
+				window.alert(`Your guess isn't complete. Does it have ${this.codeLength} symbols?`)
 				return
 			}
 			const pins = em.getHints(this.code, guess)

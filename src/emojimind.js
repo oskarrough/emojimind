@@ -1,6 +1,9 @@
-import debug from './debug.js'
+/* global window */
 
 const em = {}
+
+// const debug = console.log.bind(window.console)
+const debug = function () {}
 
 // Returns a random integer between min (included) and max (excluded)
 em.numberBetween = (min, max) => Math.floor(Math.random() * (max - min)) + min
@@ -88,4 +91,3 @@ em.getHints = (code, guess) => {
 }
 
 export default em
-
