@@ -37,7 +37,9 @@ export default new Vue({
 	},
 	computed: {
 		buttonLabel() {
-			return this.code.length ? 'Start over with a new code' : 'I am ready. Let me try'
+			return this.code.length < 0
+				? 'Start over with a new code'
+				: 'I am ready. Let me try'
 		},
 		totalPossibilities() {
 			return Number(this.symbols.length) * 1 * 2 * 3 * 4 * 5 * 6
@@ -50,28 +52,35 @@ export default new Vue({
 			this.guesses = this.createGuesses()
 		},
 		createGuesses() {
-			let guesses = []
+			const guesses = []
+
 			for (let i = 0; i < this.maxGuesses; i++) {
-				let row = {
+				const row = {
 					guess: [],
 					pins: {}
 				}
+
 				for (let k = 0; k < this.codeLength; k++) {
 					// We fill the array with null values to give it a length
 					row.guess.push(false)
 				}
+
 				guesses.push(row)
 			}
+
 			return guesses
 		},
 		tryGuess(index, event) {
 			event.preventDefault()
-			const guess = this.guesses[index].guess
+			const {guess} = this.guesses[index]
 			const hasTheRightLength = guess.filter(g => g).length === this.codeLength
 			if (!hasTheRightLength) {
-				window.alert(`Your guess isn't complete. Does it have ${this.codeLength} symbols?`)
+				window.alert(
+					`Your guess isn't complete. Does it have ${this.codeLength} symbols?`
+				)
 				return
 			}
+
 			const pins = em.getHints(this.code, guess)
 			Vue.set(this.guesses[index], 'pins', pins)
 			const isLastGuess = index === this.guesses.length - 1
@@ -83,9 +92,10 @@ export default new Vue({
 				window.alert('Correct.')
 				return
 			}
+
 			console.log('Wrong.')
 			if (isLastGuess) {
-				window.alert(`Mwa ha ha, you lose. I am the mastermind. Not you.`)
+				window.alert('Mwa ha ha, you lose. I am the mastermind. Not you.')
 			}
 		}
 	}

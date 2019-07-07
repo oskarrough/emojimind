@@ -9,22 +9,27 @@
   "engines": {
     "node": ">= 6.0.0"
   },
-  "dependencies": {},
   "devDependencies": {
     "ava": "^2.1.0",
     "browser-sync": "^2.17.5",
-    "xo": "^0.16.0"
-  },
-  "xo": {
-    "semicolon": false
+    "xo": "^0.24.0"
   },
   "keywords": [
     "game"
   ],
-	"ava": {
-		"require": [
-			"esm"
-		]
-	},
+  "xo": {
+    "envs": ["browser"],
+    "semicolon": false,
+    "prettier": true,
+    "rules": { 
+      "import/extensions": "never",
+      "guard-for-in": "warn"
+    }
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ]
+  },
   "license": "MIT"
 }
