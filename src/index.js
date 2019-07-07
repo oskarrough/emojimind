@@ -32,7 +32,7 @@ export default new Vue({
 		codeLength: 4,
 		maxGuesses: 10,
 		showCode: false,
-		code: [1,1,1,1],
+		code: [],
 		guesses: []
 	},
 	computed: {
