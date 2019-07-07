@@ -13,10 +13,11 @@ Vue.filter('invalidGuess', (array, max) => {
 
 Vue.component('select-guess', {
 	props: ['guess', 'symbols', 'disabled'],
-	template: `<ul class="SelectGuess">
-		<li v-for="char in guess" track-by="$index">
-			<select required v-model="char" :disabled="disabled">
-				<option v-for="sym in symbols" track-by="$index" :value="sym">
+	template: `
+	<ul class="SelectGuess">
+		<li v-for="(char, index) in guess" :key="index">
+			<select v-model="guess[index]" :disabled="disabled" required>
+				<option v-for="(sym, indx) in symbols" :value="sym" :key="indx">
 					{{sym}}
 				</option>
 			</select>
@@ -31,12 +32,8 @@ export default new Vue({
 		codeLength: 4,
 		maxGuesses: 10,
 		showCode: false,
-		code: [],
+		code: [6, 3, 2, 2],
 		guesses: []
-	},
-	init() {
-		this.code = [6, 3, 2, 2]
-		// let hints = emojimind.getHints([6,3,2,2],[6,2,3,2])
 	},
 	computed: {
 		buttonLabel() {
@@ -49,10 +46,8 @@ export default new Vue({
 	methods: {
 		newGame() {
 			console.log('new game')
-			const code = em.createCode(this.symbols, this.codeLength)
-			Vue.set(this, 'code', code)
-			const guesses = this.createGuesses()
-			Vue.set(this, 'guesses', guesses)
+			this.code = em.createCode(this.symbols, this.codeLength)
+			this.guesses = this.createGuesses()
 		},
 		createGuesses() {
 			let guesses = []
@@ -63,7 +58,7 @@ export default new Vue({
 				}
 				for (let k = 0; k < this.codeLength; k++) {
 					// We fill the array with null values to give it a length
-					row.guess.push(null)
+					row.guess.push(false)
 				}
 				guesses.push(row)
 			}

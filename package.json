@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node browser-sync.js",
     "build": "rollup -c",
-    "dev": "npm run start; rollup -c -w",
+    "dev": "rollup -c -w",
     "test": "xo && ava"
   },
   "engines": {
