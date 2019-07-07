@@ -1,7 +1,7 @@
 import test from 'ava'
 import emojimind from './src/emojimind'
 
-const testPins = function (code, pattern, expectedBlacks, expectedWhites) {
+const testPins = function(code, pattern, expectedBlacks, expectedWhites) {
 	const pins = emojimind.getHints(code, pattern)
 	return pins.blacks === expectedBlacks && pins.whites === expectedWhites
 }
@@ -10,6 +10,7 @@ test('function export works', t => {
 	t.is(typeof emojimind.getHints, 'function')
 })
 
+// prettier-ignore
 test('we get the correct amount of black and white pins', t => {
 	t.true(testPins(
 		[6, 3, 2, 2],
@@ -18,7 +19,7 @@ test('we get the correct amount of black and white pins', t => {
 		[6, 3, 2, 2],
 		[6, 2, 3, 2], 2, 2))
 
-	let hints = emojimind.getHints([6, 3, 2, 2], [6, 2, 3, 2])
+	const hints = emojimind.getHints([6, 3, 2, 2], [6, 2, 3, 2])
 	t.is(hints.blacks, 2)
 	t.is(hints.whites, 2)
 
@@ -50,4 +51,3 @@ test('we get the correct amount of black and white pins', t => {
 		[4, 3, 5, 6],
 		[4, 5, 6, 4], 1, 2))
 })
-

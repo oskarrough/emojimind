@@ -15,7 +15,7 @@
 				<p>Can you break the secret code?</p>
 				<p>
 					{{symbols.length}} symbols. 
-					{{maxCodeLength}} characters. 
+					{{codeLength}} characters. 
 					{{totalPossibilities}} posibilities.
 					Only {{maxGuesses}} guesses. 
 				</p>
@@ -33,14 +33,10 @@
 		<p><button @click="newGame" v-cloak>{{buttonLabel}}</button></p>
 
 		<template v-if="code.length">
-			<p v-show="!showCode" class="CodeDisplay">
-				<code>
-					<b v-for="(n, index) in code" :key="index">
-						<span>?</span>
-					</b>
-				</code>
+			<select-guess v-if="showCode" :guess="code" :symbols="symbols"></select-guess>
+			<p v-else class="CodeDisplay">
+				<span v-for="(symbol, index) in code" :key="index">?</span>
 			</p>
-			<select-guess v-show="showCode" :guess="code" :symbols="symbols"></select-guess>
 		</template>
 
 		<form v-for="(row, index) in guesses" class="Row" @submit="tryGuess(index, $event)">
