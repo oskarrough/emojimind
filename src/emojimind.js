@@ -1,9 +1,11 @@
-/* global window */
-
 const em = {}
 
-const debug = console.log.bind(window.console)
-// Const debug = function () {}
+let debug = function () {}
+
+// Uncomment this to enable more debug logging.
+// if (typeof window !== undefined) {
+// 	debug = console.log.bind(console)
+// }
 
 // Returns a random integer between min (included) and max (excluded)
 em.numberBetween = (min, max) => Math.floor(Math.random() * (max - min)) + min

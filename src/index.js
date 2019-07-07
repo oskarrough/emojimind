@@ -1,4 +1,4 @@
-/* global window, Vue */
+/* global Vue */
 /* eslint no-alert:0 */
 
 import em from './emojimind.js'
