@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A small mastermind variant",
   "scripts": {
-    "start": "node browser-sync.js",
+    "start": "browser-sync src --watch --no-notify",
     "test": "xo && ava"
   },
   "engines": {
