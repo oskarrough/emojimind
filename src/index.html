@@ -13,7 +13,7 @@
 				<p>Can you break the secret code?</p>
 				<p>
 					{{symbols.length}} symbols. 
-					{{codeLength}} characters. 
+					{{maxCodeLength}} characters. 
 					{{totalPossibilities}} posibilities.
 					Only {{maxGuesses}} guesses. 
 				</p>
@@ -33,7 +33,7 @@
 		<template v-if="code.length">
 			<p v-show="!showCode" class="CodeDisplay">
 				<code>
-					<b v-for="(n, index) in code" track-by="$index">
+					<b v-for="(n, index) in code" :key="index">
 						<span>?</span>
 					</b>
 				</code>
@@ -41,14 +41,14 @@
 			<select-guess v-show="showCode" :guess="code" :symbols="symbols"></select-guess>
 		</template>
 
-		<form v-for="row in guesses" class="Row" @submit="tryGuess($index, $event)">
-			<select-guess :guess="row.guess" :symbols="symbols" :disabled="row.pins.blacks || row.pins.whites"></select-guess>
-			<p v-show="row.pins | isEmptyObject" v-cloak class="Row-action">
-			<button type="submit">Guess</button>
+		<form v-for="(row, index) in guesses" class="Row" @submit="tryGuess(index, $event)">
+			<select-guess v-bind:guess="row.guess" :symbols="symbols" :disabled="row.pins.blacks || row.pins.whites"></select-guess>
+			<p v-show="row.pins" v-cloak class="Row-action">
+				<button type="submit">Guess</button>
 			</p>
 			<div v-cloak class="Row-pins">
-				<div><span v-for="n in row.pins.blacks" transition="stagger" stagger="100">(X)</span></div>
-				<div><span v-for="n in row.pins.whites" transition="stagger" stagger="100">(O)</span></div>
+				<div><span v-for="n in row.pins.blacks">(X)</span></div>
+				<div><span v-for="n in row.pins.whites">(O)</span></div>
 			</div>
 		</form>
 
@@ -65,7 +65,7 @@
 		</template>
 	</div>
 
-	<script src="https://unpkg.com/vue@1.0.28/dist/vue.min.js"></script>
+	<script src="https://unpkg.com/vue@2/dist/vue.min.js"></script>
 	<script src="bundle.js"></script>
 
 	<script id="__bs_script__">//<![CDATA[
