@@ -1,7 +1,7 @@
 /* global window, Vue */
 /* eslint no-alert:0 */
 
-import em from './emojimind'
+import em from './emojimind.js'
 
 // Returns a boolean if the object is emtpy
 Vue.filter('isEmptyObject', value => em.isEmptyObject(value))
