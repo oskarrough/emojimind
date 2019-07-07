@@ -107,12 +107,13 @@ select {
 	appearance: none;
 }
 
-.CodeDisplay code {
-	/* make it the same width as .SelectGuess */
-	display: block;
-	font-size: 1.5em;
-	letter-spacing: 0.25em;
-	margin-left: 0.6em;
+.CodeDisplay  {
+	position: relative;
+}
+.CodeDisplay > * {
+	display: inline-block;
+	min-width: 50px;
+	text-align: center;
 	min-height: 48px;
 }
 
