@@ -37,7 +37,7 @@ export default new Vue({
 	},
 	computed: {
 		buttonLabel() {
-			return this.code.length < 0
+			return this.code.length > 0
 				? 'Start over with a new code'
 				: 'I am ready. Let me try'
 		},
