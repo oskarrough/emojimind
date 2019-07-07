@@ -4,8 +4,6 @@
   "description": "A small mastermind variant",
   "scripts": {
     "start": "node browser-sync.js",
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
     "test": "xo && ava"
   },
   "engines": {
@@ -16,24 +14,8 @@
   },
   "devDependencies": {
     "ava": "^0.16.0",
-    "babel-preset-es2015-rollup": "^1.2.0",
-    "babel-register": "^6.16.3",
     "browser-sync": "^2.17.5",
-    "rollup": "^0.36.3",
-    "rollup-plugin-babel": "^2.6.1",
-    "rollup-watch": "^4.3.1",
     "xo": "^0.16.0"
-  },
-  "ava": {
-    "babel": "inherit",
-    "require": [
-      "babel-register"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
   },
   "xo": {
     "semicolon": false

@@ -7,4 +7,4 @@ bs.init({
 	ui: false
 })
 
-bs.watch(['src/*.html', 'dist/*.js', 'src/*.css']).on('change', bs.reload)
+bs.watch(['src']).on('change', bs.reload)
