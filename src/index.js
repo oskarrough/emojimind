@@ -46,7 +46,7 @@ export default new Vue({
 		}
 	},
 	created() {
-		this.newGame()
+		// this.newGame()
 	},
 	methods: {
 		newGame() {
