@@ -16,8 +16,8 @@
 				<p>
 					{{symbols.length}} symbols. 
 					{{codeLength}} characters. 
+					{{maxGuesses}} guesses. 
 					{{totalPossibilities}} posibilities.
-					Only {{maxGuesses}} guesses. 
 				</p>
 			</template>
 			<template v-else>
@@ -40,9 +40,11 @@
 		</template>
 
 		<form v-for="(row, index) in guesses" class="Row" @submit="tryGuess(index, $event)">
-			<select-guess v-bind:guess="row.guess" :symbols="symbols" :disabled="row.pins.blacks || row.pins.whites"></select-guess>
+			<select-guess class="Row-guess" :guess="row.guess" :symbols="symbols" :disabled="row.pins.blacks || row.pins.whites"></select-guess>
 			<p v-show="row.pins" v-cloak class="Row-action">
-				<button type="submit">Guess</button>
+				<button type="submit" :class="{correct: row.pins.blacks === 4, wrong: row.pins.blacks < 4}">
+					Guess {{index + 1}}
+				</button>
 			</p>
 			<div v-cloak class="Row-pins">
 				<div><span v-for="n in row.pins.blacks">(X)</span></div>
