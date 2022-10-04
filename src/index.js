@@ -3,37 +3,18 @@
 
 import em from './emojimind.js'
 
-// Returns a boolean if the object is emtpy
-Vue.filter('isEmptyObject', value => em.isEmptyObject(value))
+const {createApp} = Vue
 
-// Because our 'guess' array contains null values we need to filter them out before we can check the length.
-Vue.filter('invalidGuess', (array, max) => {
-	return array.filter(v => v).length !== max
-})
-
-Vue.component('select-guess', {
-	props: ['guess', 'symbols', 'disabled'],
-	template: `
-	<ul class="SelectGuess">
-		<li v-for="(char, index) in guess" :key="index">
-			<select v-model="guess[index]" :disabled="disabled" required>
-				<option v-for="(sym, indx) in symbols" :value="sym" :key="indx">
-					{{sym}}
-				</option>
-			</select>
-		</li>
-	</ul>`
-})
-
-export default new Vue({
-	el: '#emojimind',
-	data: {
-		symbols: ['1', '2', '3', '4', '5', '6'],
-		codeLength: 4,
-		maxGuesses: 10,
-		showCode: false,
-		code: [],
-		guesses: []
+const App = {
+	data() {
+		return {
+			symbols: ['1', '2', '3', '4', '5', '6'],
+			codeLength: 4,
+			maxGuesses: 10,
+			showCode: false,
+			code: [],
+			guesses: []
+		}
 	},
 	computed: {
 		buttonLabel() {
@@ -84,12 +65,10 @@ export default new Vue({
 				)
 				return
 			}
-				console.log(this.guesses[index])
-			const pins = em.getHints(this.code, guess)
-			Vue.set(this.guesses[index], 'pins', pins)
-				console.log(this.guesses[index])
+			this.guesses[index].pins = em.getHints(this.code, guess)
+			console.log(this.guesses[index])
 			const isLastGuess = index === this.guesses.length - 1
-			this.checkIfWeWon(pins.blacks === this.codeLength, isLastGuess)
+			this.checkIfWeWon(this.guesses[index].pins.blacks === this.codeLength, isLastGuess)
 		},
 		checkIfWeWon(winCondition, isLastGuess) {
 			if (winCondition) {
@@ -108,4 +87,23 @@ export default new Vue({
 			return false
 		}
 	}
-})
+}
+
+const SelectGuess = {
+	props: ['guess', 'symbols', 'disabled'],
+	template: `
+	<ul class="SelectGuess">
+		<li v-for="(char, index) in guess" :key="index">
+			<select v-model="guess[index]" :disabled="disabled" required>
+				<option v-for="(sym, indx) in symbols" :value="sym" :key="indx">
+					{{sym}}
+				</option>
+			</select>
+		</li>
+	</ul>`
+}
+
+const app = createApp(App)
+app.component('SelectGuess', SelectGuess) 
+app.mount('#emojimind')
+
