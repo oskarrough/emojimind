@@ -1,3 +1,0 @@
-language: node_js
-# "node" is a special var, allowing Travis to set node version.
-node_js: node

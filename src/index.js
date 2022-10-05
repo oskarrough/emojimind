@@ -13,18 +13,16 @@ const App = {
 			maxGuesses: 10,
 			showCode: false,
 			code: [],
-			guesses: []
+			guesses: [],
 		}
 	},
 	computed: {
 		buttonLabel() {
-			return this.code.length > 0
-				? 'Reset game'
-				: 'I am ready. Let me try'
+			return this.code.length > 0 ? 'New Game' : 'I am ready. Let me try'
 		},
 		totalPossibilities() {
 			return Number(this.symbols.length) * 1 * 2 * 3 * 4 * 5 * 6
-		}
+		},
 	},
 	created() {
 		// this.newGame()
@@ -42,7 +40,7 @@ const App = {
 			for (let i = 0; i < this.maxGuesses; i++) {
 				const row = {
 					guess: [],
-					pins: {}
+					pins: {},
 				}
 
 				for (let k = 0; k < this.codeLength; k++) {
@@ -58,11 +56,9 @@ const App = {
 		tryGuess(index, event) {
 			event.preventDefault()
 			const {guess} = this.guesses[index]
-			const hasTheRightLength = guess.filter(g => g).length === this.codeLength
+			const hasTheRightLength = guess.filter((g) => g).length === this.codeLength
 			if (!hasTheRightLength) {
-				window.alert(
-					`Your guess isn't complete. Does it have ${this.codeLength} symbols?`
-				)
+				window.alert(`Your guess isn't complete. Does it have ${this.codeLength} symbols?`)
 				return
 			}
 			this.guesses[index].pins = em.getHints(this.code, guess)
@@ -85,8 +81,8 @@ const App = {
 			}
 
 			return false
-		}
-	}
+		},
+	},
 }
 
 const SelectGuess = {
@@ -100,10 +96,9 @@ const SelectGuess = {
 				</option>
 			</select>
 		</li>
-	</ul>`
+	</ul>`,
 }
 
 const app = createApp(App)
-app.component('SelectGuess', SelectGuess) 
+app.component('SelectGuess', SelectGuess)
 app.mount('#emojimind')
-

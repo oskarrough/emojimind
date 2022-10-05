@@ -11,11 +11,10 @@ let debug = function () {}
 em.numberBetween = (min, max) => Math.floor(Math.random() * (max - min)) + min
 
 // Copies an array
-em.copyArray = array => array.map(arr => arr.slice())
+em.copyArray = (array) => array.map((arr) => arr.slice())
 
 // Checks whether an object is empty or not
-em.isEmptyObject = obj =>
-	Object.keys(obj).length === 0 && obj.constructor === Object
+em.isEmptyObject = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
 
 /**
  Creates a random code

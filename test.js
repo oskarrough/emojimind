@@ -1,5 +1,5 @@
 import test from 'ava'
-import emojimind from './src/emojimind'
+import emojimind from './src/emojimind.js'
 
 const testPins = function(code, pattern, expectedBlacks, expectedWhites) {
 	const pins = emojimind.getHints(code, pattern)
