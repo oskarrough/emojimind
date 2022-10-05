@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="/style.css">
 </head>
 <body>
+
 	<div id="emojimind">
 		<header>
 			<template v-if="!code.length">
@@ -32,6 +33,7 @@
 
 		<p><button @click="newGame" v-cloak>{{buttonLabel}}</button></p>
 
+		<!-- either reveals the actual code OR renders a "?" for each symbol -->
 		<template v-if="code.length">
 			<select-guess v-if="showCode" :guess="code" :symbols="symbols"></select-guess>
 			<p v-else class="CodeDisplay">
@@ -65,7 +67,8 @@
 		</template>
 	</div>
 
-	<script src="https://unpkg.com/vue@2/dist/vue.min.js"></script>
+	<!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+	<script src="vue.global.js"></script>
 	<script src="index.js" type="module"></script>
 
 </body>
